@@ -37,24 +37,46 @@ use stdClass;
 class course_users implements renderable, templatable {
 
     protected $header;
-    protected $users;
+    protected $courseid;
 
-    public function __construct($header, $users) {
+    public function __construct($header, $courseid) {
         $this->header = $header;
-        $this->users = $users;
+        $this->courseid = $courseid;
     }
     // Prepare the data for output by the template.
     public function export_for_template(renderer_base $output) {
+        global $USER;
 
         $data = new stdClass();
         $data->header = $this->header;
-        $data->studentlist = array();
+        $data->headerclass = 'block_es6_header';
+        $data->name = fullname($USER);
 
-        if ($this->users) {
-            foreach ($this->users as $user) {
-                $data->studentlist[] = $user->lastname . ', ' . $user->firstname;
-            }
+        // Prepare a list of student users.
+        $data->studentlist = array();
+        $students = self::get_course_students($this->courseid);
+
+        foreach ($students as $student) {
+                $data->studentlist[] = $student->lastname . ', ' . $student->firstname;
         }
+
         return $data;
+    }
+
+    private static function get_course_students($courseid) {
+        global $DB;
+
+        $sql = "SELECT u.id, u.firstname, u.lastname
+                FROM {course} as c
+                JOIN {context} as x ON c.id = x.instanceid
+                JOIN {role_assignments} as r ON r.contextid = x.id
+                JOIN {user} AS u ON u.id = r.userid
+               WHERE c.id = :courseid
+                 AND r.roleid = :roleid";
+
+        // In real world query should check users are not deleted/suspended.
+        $records = $DB->get_records_sql($sql, ['courseid' => $courseid, 'roleid' => 5]);
+
+        return $records;
     }
 }

@@ -50,11 +50,12 @@ class block_es6 extends block_base {
         }
 
         // OK let's add some content.
+        $this->content = new stdClass();
+        $this->content->footer = '';
         $header = get_string('listing', 'block_es6');
 
-        // List of course students.
-        $users = self::get_course_users($this->page->course->id);
-        $this->content->text = $OUTPUT->render(new course_users($header, $users));
+        // returns html from class and template of same name.
+        $this->content->text = $OUTPUT->render(new course_users($header, $this->page->course->id));
 
         return $this->content;
     }
@@ -77,22 +78,5 @@ class block_es6 extends block_base {
      */
     function has_config() {
         return false;
-    }
-
-    private static function get_course_users($courseid) {
-        global $DB;
-
-        $sql = "SELECT u.id, u.firstname, u.lastname
-                FROM {course} as c
-                JOIN {context} as x ON c.id = x.instanceid
-                JOIN {role_assignments} as r ON r.contextid = x.id
-                JOIN {user} AS u ON u.id = r.userid
-               WHERE c.id = :courseid
-                 AND r.roleid = :roleid";
-
-        // In real world query should check users are not deleted/suspended.
-        $records = $DB->get_records_sql($sql, ['courseid' => $courseid, 'roleid' => 5]);
-
-        return $records;
     }
 }
