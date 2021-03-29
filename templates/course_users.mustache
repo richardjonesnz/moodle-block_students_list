@@ -21,7 +21,7 @@
     This template renders the content for the block.
 
     Classes required for JS:
-    * none
+    * user_form
 
     Data attributes required for JS:
     * none
@@ -29,14 +29,14 @@
     Context variables required for this template:
     * headerclass a class defined in styles.css - string
     * header a block title - string
-    * students - an array of student names
+    * studentlist - an array of student names
     * name a user name - string
 
     Example context (json):
     {
         "headerclass": "block_header_class",
         "header": "Block title",
-        "students": "[name1, name2, ...]",
+        "studentlist": "[name1, name2, ...]",
         "name": "User name"
     }
 }}
@@ -51,6 +51,6 @@
         </ul>
     </div>
 {{#js}}
-    require{['block_es6/user_form', 'init', {{name}}]}
+    require{['block_es6/user_form'], function(init)}
 {{/js}}
 </div>
