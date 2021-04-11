@@ -2,3 +2,11 @@
 .block_es6_header {
     color:blue;
 }
+
+.block_es6_hidden {
+    display: none;
+}
+
+.block_es6_marked {
+    color:blue;
+}

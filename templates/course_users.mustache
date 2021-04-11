@@ -51,9 +51,9 @@
         </ul>
     </div>
 {{#js}}
-    require(['block_es6/user_form'],
-            function(user_form) {
-                user_form.init('{{name}}');
+    require(['block_es6/user_info'],
+            function(module) {
+                module.get_info();
             }
     );
 {{/js}}
