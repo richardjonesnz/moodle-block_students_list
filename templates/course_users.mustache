@@ -53,7 +53,7 @@
 {{! https://www.w3schools.com/bootstrap4/bootstrap_modal.asp}}
 <!-- Button to Open the Modal -->
 <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#myModal">
-  Open modal
+  {{#str}}modal_open, block_es6{{/str}}
 </button>
 
 <!-- The Modal -->
@@ -63,18 +63,20 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">{{#str}}modal_heading, block_es6{{/str}}</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        Modal body..
+          {{#str}}modal_body, block_es6{{/str}}
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          {{#str}}modal_close, block_es6{{/str}}
+        </button>
       </div>
 
     </div>
