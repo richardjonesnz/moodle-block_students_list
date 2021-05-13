@@ -66,7 +66,7 @@ class course_users implements renderable, templatable {
     private static function get_course_students($courseid) {
         global $DB;
 
-        $sql = "SELECT u.id, u.firstname, u.lastname
+        $sql = "SELECT u.id, u.firstname, u.lastname, u.email
                 FROM {course} as c
                 JOIN {context} as x ON c.id = x.instanceid
                 JOIN {role_assignments} as r ON r.contextid = x.id

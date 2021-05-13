@@ -50,13 +50,15 @@
             {{/studentlist}}
         </ul>
     </div>
-{{! https://www.w3schools.com/bootstrap4/bootstrap_modal.asp}}
-<!-- Button to Open the Modal -->
-<button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#myModal">
-  {{#str}}modal_open, block_es6{{/str}}
-</button>
-
-<!-- The Modal -->
+    {{#js}}
+    require(['block_es6/user_info'],
+            function(module) {
+                module.get_info();
+            }
+    );
+{{/js}}
+</div>
+</div>
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -81,13 +83,4 @@
 
     </div>
   </div>
-</div>
-
-{{#js}}
-    require(['block_es6/user_info'],
-            function(module) {
-                module.get_info();
-            }
-    );
-{{/js}}
 </div>
