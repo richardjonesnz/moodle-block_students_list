@@ -1,0 +1,56 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see http://www.gnu.org/licenses/.
+}}
+
+{{!
+    @template block_es6/ajax
+
+    This template renders the ajax content for the block.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * none
+
+    Example context (json):
+    {
+    }
+}}
+
+<div class="container-fluid mt-4">
+    <div class="row text-center">
+        <div class="col-12">
+            <input id="ajaxthetext" type="text" name="thetext">
+        </div>
+        <div class="col-12">
+            <button id="ajaxbtn" type="button" class="btn btn-secondary mt-1">{{# str }} ajaxexamplebutton, block_es6 {{/ str }}</button>
+        </div>
+        <div id="ajaxresult" class="col-12 mt-2">
+        </div>
+    </div>
+</div>
+
+{{#js}}
+    require(['block_es6/ajax'],
+        function(module) {
+            module.ajax_example();
+        }
+    );
+{{/js}}
