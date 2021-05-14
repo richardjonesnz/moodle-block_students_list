@@ -25,6 +25,10 @@
 $string['pluginname'] = 'ES6';
 $string['es6:addinstance'] = 'Add a new ES6 block';
 $string['listing'] = 'List of students';
+
 $string['modal_heading'] = 'A Modal Example';
 $string['modal_body'] = '<p>The <strong>body</strong> of the modal</p>';
 $string['modal_close'] = 'Close';
+
+// AJAX Example.
+$string['ajaxexamplebutton'] = 'Engage!';

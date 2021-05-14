@@ -57,6 +57,8 @@ class block_es6 extends block_base {
         // returns html from class and template of same name.
         $this->content->text = $OUTPUT->render(new course_users($header, $this->page->course->id));
 
+        $this->content->text .= $OUTPUT->render_from_template('block_es6/ajax', array());
+
         return $this->content;
     }
     /**
