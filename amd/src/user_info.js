@@ -1,16 +1,15 @@
 import $ from 'jquery';
 export const get_info = () => {
-    const lis = document.getElementsByClassName('list-group-item list-group-item-warning');
-    //const myModal = document.querySelector("#myModal");
+    const lis = document.getElementsByClassName('block_es6_unmarked');
     function alertList() {
         let e = event.target;
-        if (e.classList.contains('list-group-item-warning')) {
-            e.classList.remove('list-group-item-warning');
-            e.classList.add('list-group-item-primary');
-           $('#myModal').modal('show');
+        if (e.classList.contains('block_es6_unmarked')) {
+            e.classList.remove('block_es6_unmarked');
+            e.classList.add('block_es6_marked');
+            $('#myModal').modal('show');
         } else {
-            e.classList.remove('list-group-item-primary');
-            e.classList.add('list-group-item-warning');
+            e.classList.remove('block_es6_marked');
+            e.classList.add('block_es6_unmarked');
         }
     }
 

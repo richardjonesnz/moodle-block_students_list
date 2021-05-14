@@ -50,7 +50,6 @@ class course_users implements renderable, templatable {
         $data = new stdClass();
         $data->header = $this->header;
         $data->headerclass = 'block_es6_header';
-        $data->name = fullname($USER);
 
         // Prepare a list of student users.
         $data->studentlist = array();
