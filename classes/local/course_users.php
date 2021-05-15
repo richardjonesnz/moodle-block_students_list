@@ -15,13 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * block_es6 course users output class
+ * block_modals course users output class
  *
- * @package   block_es6
+ * @package   block_modals
  * @copyright  2021 Richard Jones <richardnz@outlook.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace block_es6\local;
+namespace block_modals\local;
 
 use renderable;
 use renderer_base;
@@ -29,7 +29,7 @@ use templatable;
 use stdClass;
 
 /**
- * block es6: Create a new renderable object
+ * block modals: Create a new renderable object
  *
  * @copyright  2021 Richard Jones <richardnz@outlook.com>
  */
@@ -49,7 +49,7 @@ class course_users implements renderable, templatable {
 
         $data = new stdClass();
         $data->header = $this->header;
-        $data->headerclass = 'block_es6_header';
+        $data->headerclass = 'block_modals_header';
 
         // Prepare a list of student users.
         $data->studentlist = array();

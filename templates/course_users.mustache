@@ -16,7 +16,7 @@
 }}
 
 {{!
-    @template block_es6/course_users
+    @template block_modals/course_users
 
     This template renders the content for the block.
 
@@ -30,56 +30,41 @@
     * headerclass a class defined in styles.css - string
     * header a block title - string
     * studentlist - an array of student names
-    * name a user name - string
+    * student a user name - string
 
     Example context (json):
     {
         "headerclass": "block_header_class",
         "header": "Block title",
         "studentlist": "[name1, name2, ...]",
-        "name": "User name"
+        "student": "User name"
     }
 }}
-
+{{! student list }}
 <div class="container">
     <h3 class="{{headerclass}}">{{header}}</h3>
     <div>
         <ul class="list-group">
             {{#studentlist}}
-                <li class="block_es6_unmarked">{{.}}</li>
+                <li class="block_modals_unmarked">{{.}}</li>
             {{/studentlist}}
         </ul>
     </div>
+    {{! the modal }}
+    <div class="card">
+    <div id="block_modals_myModal" class="block_modals_modal">
+        <div class="block_modals_modal_content">
+            {{! A close button }}
+            <span class="block_modals_close"><i class="fa fa-times"></i></span>
+            {{! modal content - student from user_info.js }}
+            <p>{{#str}} label, block_modals {{/str}}{{student}}</p>
+        </div>
+    </div>
     {{#js}}
-    require(['block_es6/user_info'],
+        require(['block_modals/user_info'],
             function(module) {
                 module.get_info();
             }
-    );
+        );
     {{/js}}
-</div>
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">{{#str}}modal_heading, block_es6{{/str}}</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-          {{#str}}modal_body, block_es6{{/str}}
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">
-          {{#str}}modal_close, block_es6{{/str}}
-        </button>
-      </div>
-
-    </div>
-  </div>
 </div>

@@ -15,20 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * block_es6 language file
+ * block_modals language file
  *
- * @package   block_es6
+ * @package   block_modals
  * @copyright  2021 Richard Jones <richardnz@outlook.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 // General strings.
-$string['pluginname'] = 'ES6';
-$string['es6:addinstance'] = 'Add a new ES6 block';
+$string['pluginname'] = 'Modal examples';
+$string['modals:addinstance'] = 'Add a new modal examples block';
 $string['listing'] = 'List of students';
-
-$string['modal_heading'] = 'A Modal Example';
-$string['modal_body'] = '<p>The <strong>body</strong> of the modal</p>';
-$string['modal_close'] = 'Close';
-
-// AJAX Example.
-$string['ajaxexamplebutton'] = 'Engage!';
+$string['label'] = 'Student name: ';

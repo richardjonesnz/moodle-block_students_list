@@ -15,14 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * block_es6 version file
+ * block_modals version file
  *
- * @package   block_es6
+ * @package   block_modals
  * @copyright  2021 Richard Jones <richardnz@outlook.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'block_es6';
-$plugin->version = 2021032805;
+$plugin->component = 'block_modals';
+$plugin->version = 2021051500;
 $plugin->requires = 2020060900;

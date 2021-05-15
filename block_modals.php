@@ -15,26 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * block_es6 main file
+ * block_modals main file
  *
- * @package   block_es6
+ * @package   block_modals
  * @copyright  2021 Richard Jones <richardnz@outlook.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-use \block_es6\local\course_users;
+use \block_modals\local\course_users;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Class es6 minimal required block class.
+ * Class modals minimal required block class.
  *
  */
 
-class block_es6 extends block_base {
+class block_modals extends block_base {
     /**
      * Initialize our block with a language string.
      */
     public function init() {
-        $this->title = get_string('pluginname', 'block_es6');
+        $this->title = get_string('pluginname', 'block_modals');
     }
 
     public function get_content() {
@@ -52,12 +52,10 @@ class block_es6 extends block_base {
         // OK let's add some content.
         $this->content = new stdClass();
         $this->content->footer = '';
-        $header = get_string('listing', 'block_es6');
+        $header = get_string('listing', 'block_modals');
 
         // returns html from class and template of same name.
         $this->content->text = $OUTPUT->render(new course_users($header, $this->page->course->id));
-
-        $this->content->text .= $OUTPUT->render_from_template('block_es6/ajax', array());
 
         return $this->content;
     }
