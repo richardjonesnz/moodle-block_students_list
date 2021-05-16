@@ -6,16 +6,18 @@ export const get_info = () => {
     const modal = document.getElementById('block_modals_myModal');
     const span = document.getElementsByClassName('block_modals_close')[0];
     const content = document.querySelector('.block_model_details');
+    const label = content.childNodes[1].innerHTML;
 
     span.onclick = function() {
         modal.style.display = "none";
+        content.childNodes[1].innerHTML = label;
     };
 
     for (let li of lis) {
         li.onclick = function() {
             modal.style.display = "block";
             log.info(content.childNodes[1].innerHTML);
-            content.childNodes[1].innerHTML += li.innerHTML;
+            content.childNodes[1].innerHTML = label + li.innerHTML;
         };
     }
 };
