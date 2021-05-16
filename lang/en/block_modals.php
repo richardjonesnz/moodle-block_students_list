@@ -26,3 +26,4 @@ $string['pluginname'] = 'Modal examples';
 $string['modals:addinstance'] = 'Add a new modal examples block';
 $string['listing'] = 'List of students';
 $string['label'] = 'Student name: ';
+$string['comment'] = 'Comment: ';
