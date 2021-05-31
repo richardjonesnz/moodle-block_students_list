@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /*
- * @package block_modals permissions.
+ * @package block_students permissions.
  * @copyright 2021 Richard Jones <richardnz@outlook.com>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -23,7 +23,7 @@ defined('MOODLE_INTERNAL') || die();
 $capabilities = array(
 
     // Specified user can add to courses.
-    'block/modals:addinstance' => [
+    'block/students:addinstance' => [
         'riskbitmask' => RISK_SPAM | RISK_XSS,
         'captype' => 'write',
         'contextlevel' => CONTEXT_BLOCK,

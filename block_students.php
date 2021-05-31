@@ -15,26 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * block_modals main file
+ * block_students main file
  *
- * @package   block_modals
+ * @package   block_students
  * @copyright  2021 Richard Jones <richardnz@outlook.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-use \block_modals\local\course_users;
+use \block_students\local\fetch_students;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Class modals minimal required block class.
+ * Class students minimal required block class.
  *
  */
 
-class block_modals extends block_base {
+class block_students extends block_base {
     /**
      * Initialize our block with a language string.
      */
     public function init() {
-        $this->title = get_string('pluginname', 'block_modals');
+        $this->title = get_string('pluginname', 'block_students');
     }
 
     public function get_content() {
@@ -52,10 +52,10 @@ class block_modals extends block_base {
         // OK let's add some content.
         $this->content = new stdClass();
         $this->content->footer = '';
-        $header = get_string('listing', 'block_modals');
+        $header = get_string('listing', 'block_students');
 
         // returns html from class and template of same name.
-        $this->content->text = $OUTPUT->render(new course_users($header, $this->page->course->id));
+        $this->content->text = $OUTPUT->render(new fetch_students($header, $this->page->course->id));
 
         return $this->content;
     }

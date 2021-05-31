@@ -1,1 +1,1 @@
-Working with modals.
+Student information block.  Simple examples of using JS in a block.

@@ -15,15 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * block_modals language file
+ * block_students language file
  *
- * @package   block_modals
+ * @package   block_students
  * @copyright  2021 Richard Jones <richardnz@outlook.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 // General strings.
-$string['pluginname'] = 'Modal examples';
-$string['modals:addinstance'] = 'Add a new modal examples block';
+$string['pluginname'] = 'Student information';
+$string['students:addinstance'] = 'Add a new student block';
 $string['listing'] = 'List of students';
 $string['label'] = 'Student name: ';
-$string['comment'] = 'Comment: ';

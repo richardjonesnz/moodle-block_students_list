@@ -15,26 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * block_modals course users output class
+ * block_students output.
  *
- * @package   block_modals
+ * @package   block_students
  * @copyright  2021 Richard Jones <richardnz@outlook.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace block_modals\local;
 
+namespace block_students\local;
 use renderable;
 use renderer_base;
 use templatable;
 use stdClass;
 
-/**
- * block modals: Create a new renderable object
- *
- * @copyright  2021 Richard Jones <richardnz@outlook.com>
- */
-
-class course_users implements renderable, templatable {
+class fetch_students implements renderable, templatable {
 
     protected $header;
     protected $courseid;
@@ -43,39 +37,48 @@ class course_users implements renderable, templatable {
         $this->header = $header;
         $this->courseid = $courseid;
     }
+
     // Prepare the data for output by the template.
     public function export_for_template(renderer_base $output) {
         global $USER;
 
         $data = new stdClass();
         $data->header = $this->header;
-        $data->headerclass = 'block_modals_header';
+        $data->headerclass = 'block_students_header';
+        $data->studentlist = array();
 
         // Prepare a list of student users.
-        $data->studentlist = array();
         $students = self::get_course_students($this->courseid);
 
         foreach ($students as $student) {
-                $data->studentlist[] = $student->lastname . ', ' . $student->firstname;
+            $list = array();
+            $list['name'] = $student->lastname . ', ' . $student->firstname;
+            $list['pic'] = $student->pic;
+            $data->studentlist[] = $list;
         }
-
         return $data;
     }
 
     private static function get_course_students($courseid) {
-        global $DB;
+        global $DB, $OUTPUT;
 
-        $sql = "SELECT u.id, u.firstname, u.lastname, u.email
+        $sql = "SELECT u.id, u.firstname, u.lastname, u.email, u.lastaccess, u.lastip, u.suspended
                 FROM {course} as c
                 JOIN {context} as x ON c.id = x.instanceid
                 JOIN {role_assignments} as r ON r.contextid = x.id
                 JOIN {user} AS u ON u.id = r.userid
                WHERE c.id = :courseid
-                 AND r.roleid = :roleid";
+                 AND r.roleid = :roleid
+                 AND u.suspended = :status";
 
-        // In real world query should check users are not deleted/suspended.
-        $records = $DB->get_records_sql($sql, ['courseid' => $courseid, 'roleid' => 5]);
+        $students = $DB->get_records_sql($sql, ['courseid' => $courseid,
+                                               'roleid' => 5,
+                                               'status' => 0]);
+        foreach ($students as $student) {
+            $rs = $DB->get_record_select("user", "id = '$student->id'", null, \user_picture::fields());
+            $student->pic = $OUTPUT->user_picture($rs);
+        }
 
-        return $records;
+        return (array) $students;
     }
 }

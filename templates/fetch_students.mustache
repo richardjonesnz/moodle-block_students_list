@@ -16,7 +16,7 @@
 }}
 
 {{!
-    @template block_modals/course_users
+    @template block_students/fetch_students
 
     This template renders the content for the block.
 
@@ -46,32 +46,8 @@
     <div>
         <ul class="list-group">
             {{#studentlist}}
-                <li class="block_modals_unmarked">{{.}}</li>
+                <li class="block_students_list">{{{pic}}} {{name}}</li>
             {{/studentlist}}
         </ul>
     </div>
-    {{! the modal }}
-    <div class="card">
-    <div id="block_modals_myModal" class="block_modals_modal">
-        <div class="block_modals_modal_content">
-            {{! A close button }}
-            <span class="block_modals_close"><i class="fa fa-times"></i></span>
-            <div class="block_model_details">
-                <p>{{#str}} label, block_modals {{/str}}</p>
-            </div>
-            <div class="block_model_form">
-                <div class="col-xs-4">
-                    <label for="ex3">{{#str}} comment, block_modals {{/str}}</label>
-                    <input class="form-control" id="ex3" type="text">
-                </div>
-            </div>
-        </div>
-    </div>
-    {{#js}}
-        require(['block_modals/user_info'],
-            function(module) {
-                module.get_info();
-            }
-        );
-    {{/js}}
 </div>

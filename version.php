@@ -15,14 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * block_modals version file
+ * block_students version file
  *
- * @package   block_modals
+ * @package   block_students
  * @copyright  2021 Richard Jones <richardnz@outlook.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'block_modals';
-$plugin->version = 2021051500;
+$plugin->component = 'block_students';
+$plugin->version = 2021053100;
 $plugin->requires = 2020060900;
