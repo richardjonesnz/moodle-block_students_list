@@ -21,23 +21,30 @@
     This template renders the content for the block.
 
     Classes required for JS:
-    * user_form
+    * block_students_button
+    * active
 
     Data attributes required for JS:
     * none
 
     Context variables required for this template:
-    * headerclass a class defined in styles.css - string
-    * header a block title - string
+    * header - string a block title
     * studentlist - an array of student names
-    * student a user name - string
+    * pic - string url of user profile picture
+    * student - string a user name
+    * email - string a user's email address
+    * ip - string user's ip address
+    * access - string user's last access time in course
 
     Example context (json):
     {
-        "headerclass": "block_header_class",
         "header": "Block title",
         "studentlist": "[name1, name2, ...]",
-        "student": "User name"
+        "student": "last, first",
+        "pic": "#",
+        "email": "email@domain.com",
+        "ip": "nnn.nnn.nnn.nnn",
+        "access": "January 1st 1970 00:30 AM"
     }
 }}
 {{! student list }}
