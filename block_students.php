@@ -54,7 +54,7 @@ class block_students extends block_base {
         $this->content->footer = '';
         $header = get_string('listing', 'block_students');
 
-        // returns html from class and template of same name.
+        // Returns html from class and template of same name.
         $this->content->text = $OUTPUT->render(new fetch_students($header, $this->page->course->id));
 
         return $this->content;
@@ -76,7 +76,7 @@ class block_students extends block_base {
     /**
      * No block configuration.
      */
-    function has_config() {
+    public function has_config() {
         return false;
     }
 }

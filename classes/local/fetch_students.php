@@ -87,10 +87,10 @@ class fetch_students implements renderable, templatable {
         global $DB, $OUTPUT;
 
         $sql = "SELECT u.id, u.firstname, u.lastname, u.email, u.lastaccess, u.lastip, u.suspended
-                FROM {course} as c
-                JOIN {context} as x ON c.id = x.instanceid
-                JOIN {role_assignments} as r ON r.contextid = x.id
-                JOIN {user} AS u ON u.id = r.userid
+                FROM {course} c
+                JOIN {context} x ON c.id = x.instanceid
+                JOIN {role_assignments} r ON r.contextid = x.id
+                JOIN {user} u ON u.id = r.userid
                WHERE c.id = :courseid
                  AND r.roleid = :roleid
                  AND u.suspended = :status";
