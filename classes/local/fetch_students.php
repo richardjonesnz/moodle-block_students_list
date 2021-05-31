@@ -28,11 +28,24 @@ use renderer_base;
 use templatable;
 use stdClass;
 
+/**
+ * Class to get a list of student details per course.
+ *
+ * @var header - string heading for the list
+ * @var courseid - int the id of the course the block is in.
+ */
+
 class fetch_students implements renderable, templatable {
 
     protected $header;
     protected $courseid;
 
+    /**
+     * Constructor.
+     *
+     * @param header - string heading for the list
+     * @param courseid - int the id of the course the block is in.
+     */
     public function __construct($header, $courseid) {
         $this->header = $header;
         $this->courseid = $courseid;
@@ -50,15 +63,26 @@ class fetch_students implements renderable, templatable {
         // Prepare a list of student users.
         $students = self::get_course_students($this->courseid);
 
+        // Select the data to be shown in the template.
         foreach ($students as $student) {
             $list = array();
             $list['name'] = $student->lastname . ', ' . $student->firstname;
+            $list['email'] = $student->email;
+            $list['ip'] = ($student->lastip == null) ? 'no ip data' : $student->lastip;
+            $list['access'] = ($student->lastaccess == 0) ? 'unknown' :
+                    date("F j, Y, g:i a", $student->lastaccess);
             $list['pic'] = $student->pic;
             $data->studentlist[] = $list;
         }
+
+        // Return data for use by template.
         return $data;
     }
-
+    /**
+     * Query the DB for a list of course users (students only)
+     *
+     * @param courseid - int the id of the course the block is in.
+     */
     private static function get_course_students($courseid) {
         global $DB, $OUTPUT;
 
@@ -71,11 +95,14 @@ class fetch_students implements renderable, templatable {
                  AND r.roleid = :roleid
                  AND u.suspended = :status";
 
-        $students = $DB->get_records_sql($sql, ['courseid' => $courseid,
-                                               'roleid' => 5,
-                                               'status' => 0]);
+        $students = $DB->get_records_sql($sql, ['courseid' => $courseid,  // Current course.
+                                                'roleid' => 5,            // Student role.
+                                                'status' => 0]);          // Not suspended.
+
+        // Grab the url of the user profile picture.
         foreach ($students as $student) {
-            $rs = $DB->get_record_select("user", "id = '$student->id'", null, \user_picture::fields());
+            $rs = $DB->get_record_select("user", "id = '$student->id'", null,
+                    \user_picture::fields());
             $student->pic = $OUTPUT->user_picture($rs);
         }
 
